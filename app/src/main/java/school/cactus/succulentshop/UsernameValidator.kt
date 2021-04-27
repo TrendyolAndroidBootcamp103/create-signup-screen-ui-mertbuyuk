@@ -1,5 +1,7 @@
 package com.example.succulentshop
 
+import school.cactus.succulentshop.R
+
 class UsernameValidator : Validator {
 
     override fun validate(field: String): Int? {

@@ -1,5 +1,7 @@
 package com.example.succulentshop
 
+import school.cactus.succulentshop.R
+
 class PasswordValidator : Validator {
     override fun validate(field: String) = when {
         field.isEmpty() -> R.string.password_cannot_be_empty

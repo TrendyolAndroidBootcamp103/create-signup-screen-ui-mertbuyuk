@@ -3,8 +3,10 @@ package com.example.succulentshop
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.succulentshop.databinding.ActivitySignupBinding
+
 import com.google.android.material.textfield.TextInputLayout
+import school.cactus.succulentshop.R
+import school.cactus.succulentshop.databinding.ActivitySignupBinding
 
 class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding

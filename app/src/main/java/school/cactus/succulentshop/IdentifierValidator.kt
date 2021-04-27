@@ -1,5 +1,7 @@
 package com.example.succulentshop
 
+import school.cactus.succulentshop.R
+
 class IdentifierValidator : Validator {
     override fun validate(field: String) = when {
         field.isEmpty() -> R.string.email_cannot_be_empty

@@ -1,9 +1,10 @@
-package school.cactus.succulentshop
+package com.example.succulentshop
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.succulentshop.databinding.ActivityLoginBinding
 import com.google.android.material.textfield.TextInputLayout
-import school.cactus.succulentshop.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -11,32 +12,48 @@ class LoginActivity : AppCompatActivity() {
     private val identifierValidator = IdentifierValidator()
     private val passwordValidator = PasswordValidator()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = getString(R.string.log_in)
 
         binding.apply {
-            logInButton.setOnClickListener {
-                passwordInputLayout.validate()
-                identifierInputLayout.validate()
+            LoginButton.setOnClickListener {
+                outlinedTextFieldemail.validate()
+                outlinedTextFieldpassword.validate()
+            }
+            CreateAccountButton.setOnClickListener {
+                navigateToOther()
             }
         }
+
+        supportActionBar?.title = getString(R.string.log_in)
+
+    }
+
+    private fun Int.resolveAsString() = getString(this)//bu method ile sourceda ki keylerin valuelerine eerişiyoruz
+    //bu this gelen integeri temsil ediyor
+
+    private fun TextInputLayout.validator() = when (this) {//burda ki thiste gelen inputlayout tipi o an ki
+        binding.outlinedTextFieldemail -> identifierValidator//görünüm buysa bu tarzında düşün
+        binding.outlinedTextFieldpassword -> passwordValidator
+        else -> null
     }
 
     private fun TextInputLayout.validate() {
-        val errorMessage = validator().validate(editText!!.text.toString())
+        val errorMessage = validator()!!.validate(editText!!.text.toString())
         error = errorMessage?.resolveAsString()
-        isErrorEnabled = errorMessage != null
+        isErrorEnabled = errorMessage != null // boş değilse hata mesajı o hatalr kısmı gözüksün ve dursun
     }
 
-    private fun Int.resolveAsString() = getString(this)
-
-    private fun TextInputLayout.validator() = when (this) {
-        binding.identifierInputLayout -> identifierValidator
-        binding.passwordInputLayout -> passwordValidator
-        else -> throw IllegalArgumentException("Cannot find any validator for the given TextInputLayout")
+    private fun navigateToOther() {
+        val intent = Intent(this, SignupActivity::class.java)
+        startActivity(intent)
     }
+
+
 }
+

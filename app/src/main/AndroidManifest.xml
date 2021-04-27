@@ -3,13 +3,17 @@
     package="school.cactus.succulentshop">
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SucculentShop">
-        <activity android:name="com.example.succulentshop.LoginActivity">
+        <activity android:name="com.example.succulentshop.LoginActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,7 +21,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.succulentshop.SignupActivity"/>
+        <activity android:name="com.example.succulentshop.SignupActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            />
 
 
     </application>

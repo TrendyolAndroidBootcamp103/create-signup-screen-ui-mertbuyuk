@@ -16,10 +16,10 @@ class PasswordValidator : Validator {
         if (field.isEmpty()) {
 
             b = R.string.password_cannot_be_empty
-        } else if (field.length < 2) {
+        } else if (field.length < 7) {
             b = R.string.password_short
 
-        } else if (field.length > 20) {
+        } else if (field.length > 40) {
             b = R.string.password_long
 
         } else if ((a == false || d == false) || c == true) {

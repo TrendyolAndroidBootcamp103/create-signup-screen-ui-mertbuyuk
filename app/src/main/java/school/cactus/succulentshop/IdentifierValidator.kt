@@ -13,16 +13,8 @@ class IdentifierValidator : Validator {
     override fun signupValidate(field: String) = when {
         field.isEmpty() -> R.string.email_required
         field.length < 5 || field.length > 50 -> R.string.invalid_email
-
-        else -> {
-            if (field.contains("@") && field.contains(".")) {
-                null
-            } else {
-                R.string.invalid_email
-            }
-        }
-
-    }
+        (!field.contains("@") && !field.contains(".")) ->R.string.invalid_email
+        else -> null }
 
 
 }

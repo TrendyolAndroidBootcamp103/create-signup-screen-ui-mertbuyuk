@@ -7,28 +7,16 @@ class PasswordValidator : Validator {
         field.isEmpty() -> R.string.password_cannot_be_empty
         else -> null
     }
+    override fun signupValidate(field: String) = when {
+        field.isEmpty() -> R.string.password_cannot_be_empty
+        field.length <7 -> R.string.password_short
+        field.length >40 -> R.string.password_long
+        !field.any{it.isLowerCase()} ->R.string.password_rules
+        !field.any{it.isUpperCase()} ->R.string.password_rules
+        !field.any{it.isDigit()} ->R.string.password_rules
+        field.all{it.isLetterOrDigit()} ->R.string.password_rules
 
-    override fun signupValidate(field: String): Int? {
-        val a: Boolean = field.any { it.isLowerCase() }
-        val d: Boolean = field.any { it.isUpperCase() }
-        val c: Boolean = field.all { it.isLetterOrDigit() }
-        val b: Int
-        if (field.isEmpty()) {
-
-            b = R.string.password_cannot_be_empty
-        } else if (field.length < 7) {
-            b = R.string.password_short
-
-        } else if (field.length > 40) {
-            b = R.string.password_long
-
-        } else if ((a == false || d == false) || c == true) {
-            b = R.string.password_rules
-        } else {
-            return null
-        }
-        return b
-
+        else -> null
     }
 
 

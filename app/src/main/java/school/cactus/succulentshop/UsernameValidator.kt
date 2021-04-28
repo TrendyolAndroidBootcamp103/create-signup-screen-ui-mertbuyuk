@@ -8,25 +8,19 @@ class UsernameValidator : Validator {
         return null
     }
 
-    override fun signupValidate(field: String): Int? {
-
-        val a: String = field.replace("_", "")
-        val c: Boolean = a.all { it.isLetterOrDigit() }
-        val d: Boolean = a.any { it.isUpperCase() }
-        val b: Int
-        if (field.isEmpty()) {
-            b = R.string.required_username
-        } else if (field.length < 2) {
-            b = R.string.username_short
-
-        } else if (field.length > 20) {
-            b = R.string.username_long
-        } else if (c == false || d) {
-            b = R.string.username_rules
-        } else {
-            return null
+    override fun signupValidate(field: String) : Int? {
+        val a = field.replace("_","")
+        var b : Int? = null
+        when {
+            !a.all { it.isLetterOrDigit() } -> b = R.string.username_rules
+            field.isEmpty() -> b = R.string.required_username
+            field.length < 2 -> b = R.string.username_short
+            field.length > 20 -> b = R.string.username_long
+            else -> null
         }
         return b
-
     }
+
+
+
 }

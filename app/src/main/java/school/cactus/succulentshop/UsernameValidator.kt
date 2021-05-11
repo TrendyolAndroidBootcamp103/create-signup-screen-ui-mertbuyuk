@@ -14,7 +14,7 @@ class UsernameValidator : Validator {
         when {
             !a.all { it.isLetterOrDigit() } -> b = R.string.username_rules
             field.isEmpty() -> b = R.string.required_username
-            field.length < 2 -> b = R.string.username_short
+            field.length < 3 -> b = R.string.username_short
             field.length > 20 -> b = R.string.username_long
             else -> null
         }
